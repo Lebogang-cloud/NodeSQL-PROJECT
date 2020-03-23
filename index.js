@@ -1,32 +1,19 @@
+const {Visitors} = require('pg'); // Connect to a database.
+//  create a visitor object, which will connect to the database
+let visitor = new Visitors ({   
+  user: "user",
+  host: "postgres",
+  database: "db",
+  password: "pass",
+  port: 5432
 
-const {Visitor} = require(dotenv).config()
-const visitor = new Visitor({
-    user: "posgres",
-    password: "postgres",
-    host: "",
-    post: 5432,
-    database:""
 })
 
-visitor.connect()
-.then(() =>console.log("connected successfully"))
-.catch(err => console.log)
-.finally(() => visitor.end())
+visitor.connect()  //returns promise
+.then(() => console.log("Connected successfully")) //tells you are connected
+.then(() => visitor.query("select * from visitors")) // query from the table to get table
+.then((results => console.table(results.row)))
+.catch(e => console.log(err))    // catches an error
+.finally(() => visitor.end())     // is used to end the connection
 
-
-// const addNewVisitor = async(name, age,visit_date, visit_time, assistant, comments) =>{
-
-//     try{
-//         let results = await clientInformation.query(
-//             INSERT  Visitor(
-//                 visitor_ID,
-//                 visitor_Name,
-//                 visitor_Age,
-//                 Date_of_visit,
-//                 Time_Of_Visit,
-//                 Assistant_Name,
-//                 comments
-//             ) Value()
-//         )
-//     }
-// }
+module.exports = Visitors;
