@@ -1,24 +1,32 @@
-const Pool = require("pg").Pool;
-const pool = new Pool({
-  user: "user",
-  host: "postgresdb",
-  database: "db",
-  password: "pass",
-  port: 5432
-});
 
-const helloWorld = () => {
-  pool.query(
-    "SELECT $1::text as message",
-    ["Hello world!"],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
+const {Visitor} = require(dotenv).config()
+const visitor = new Visitor({
+    user: "posgres",
+    password: "postgres",
+    host: "",
+    post: 5432,
+    database:""
+})
 
-      console.log(results.rows);
-    }
-  );
-};
+visitor.connect()
+.then(() =>console.log("connected successfully"))
+.catch(err => console.log)
+.finally(() => visitor.end())
 
-helloWorld();
+
+// const addNewVisitor = async(name, age,visit_date, visit_time, assistant, comments) =>{
+
+//     try{
+//         let results = await clientInformation.query(
+//             INSERT  Visitor(
+//                 visitor_ID,
+//                 visitor_Name,
+//                 visitor_Age,
+//                 Date_of_visit,
+//                 Time_Of_Visit,
+//                 Assistant_Name,
+//                 comments
+//             ) Value()
+//         )
+//     }
+// }

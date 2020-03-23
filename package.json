@@ -1,0 +1,19 @@
+{
+  "name": "node-sql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lebogang-cloud/NodeSQL-PROJECT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lebogang-cloud/NodeSQL-PROJECT/issues"
+  },
+  "homepage": "https://github.com/Lebogang-cloud/NodeSQL-PROJECT#readme"
+}
