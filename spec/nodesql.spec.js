@@ -10,7 +10,7 @@ let visitor = new Visitors(
   "He is very smart"
 );
 
-let teboho = new Visitors(  1,
+let teboho = new Visitors(1,
     "Teboho",
     22,
     "03-24-2020",
@@ -18,24 +18,30 @@ let teboho = new Visitors(  1,
     "Romeo",
     "He is very smart");
 
-describe("functionality of the table in a database ", () => {
-  it("should save the Visitor into the database ", () => {
-    expect(visitor.addNewVisitor()).toEqual(1, "Teboho", 22, "03-24-2020", "20:00", "Romeo", "He is very smart");
+describe("visitor's function have been defined", () => {
+  it("should check if deleteVisitor is defined", () => {
+    expect(visitor.deleteVisitor).toBeDefined();
   });
 
-  it("should delete a visitor from the database", () => {
-    expect(visitor.deleteVisitor(teboho).response.success).toBe(true);
+  it("should check if updateVisitor is defined", () => {
+    expect(teboho.updateVisitor).toBeDefined();
   });
 
-  it("should update a visitor's details on the database", () => {
-    expect(visitor.updateVisitor(teboho).response.success).toBe(true);
+  it("should check if deleteAllVisitors is defined", () => {
+    expect(visitor.deleteAllVisitors).toBeDefined();
   });
 
-  it("should find visitor by ID on the database and return all information about that visitor", () => {
-    expect(visitor.deleteAllVisitors(teboho).response.success).toBe(true);
+  it("should check if selectVisitor is defined", () => {
+    expect(teboho.selectVisitor).toBeDefined();
+  });
+});
+
+describe("check if methods/ function adds a visitor ", () => {
+  it("should spy on addNewVisitor ", () => {
+    spyOn(visitor, "addNewVisitor");
   });
 
-  it("should delete all visitors from the database", () => {
-    expect(visitor.selectVisitor(teboho).response.success).toBe(true);
+  it("should spy on whether the a visitor's detail's are updated", () => {
+    spyOn(teboho, "updateVisitor");
   });
 });
