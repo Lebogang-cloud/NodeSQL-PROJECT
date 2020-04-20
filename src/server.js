@@ -40,6 +40,11 @@ app.get('/view-all-visitors', (req, res) => {
     const visitor = listAllVisitors();
     res.status(200).json({status: 'ok'});
 })
+app.delete('/', (req, res) => {
+    const visitor = deleteVisitor();
+    res.status(200).json({status: 'ok'});
+})
+
 
 app.delete('/', (req, res) => {
     const visitor = deleteAllVisitor();
