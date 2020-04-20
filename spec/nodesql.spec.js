@@ -1,4 +1,6 @@
 const Visitors = require("../src/index");
+const config = require('config');
+const server = require('../src/server');
 
 let visitor = new Visitors(
   1,
@@ -45,3 +47,10 @@ describe("check if methods/ function adds a visitor ", () => {
     spyOn(teboho, "updateVisitor");
   });
 });
+
+describe('server', () =>{
+  it('should test that server is running current port', async() => {
+    expect(server.port).toEqual(config.get('port'))
+  })
+  console.log(server.port)
+})

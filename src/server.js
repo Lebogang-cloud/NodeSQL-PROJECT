@@ -1,11 +1,12 @@
 const express = require('express');
+const path = require('path');
 
 const {createTable,
         addNewVisitor,
-        listVisitors,
+        listAllVisitors,
         deleteVisitor,
         updateVisitor,
-        viewVisitor,
+        selectVisitor,
         deleteAllVisitor} = require("./index")
 
 const app = express();
@@ -13,8 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
-// createTable();
-app.post('/add_visitor', (req, res) => {
+
+app.post('/new-visitor', (req, res) => {
     var visitorname = req.body.visitorname;
     var assistedby = req.body.assistedby;
     var age = req.body.age;
@@ -26,22 +27,26 @@ app.post('/add_visitor', (req, res) => {
     res.status(200).json({'message': 'visitor added'})
 })
 
-app.get('/view_visitor:id', (req, res) => {
-    const person = viewVisitor();
-    res.status(200).json({'message': 'results ready'});
+app.get('/', (req, res) => {
+    return res.status(200).send({status:'Okay'})
+})
+
+app.get('/', (req, res) => {
+    const visitor = selectVisitor();
+    return res.status(200).send({status: 'ok'});
 })
 
 app.get('/view-all-visitors', (req, res) => {
-    const visitor = listVisitors();
-    res.status(200).json({'message': 'results are ready'})
+    const visitor = listAllVisitors();
+    res.status(200).json({status: 'ok'});
 })
 
-app.delete('/delete-all', (req, res) => {
+app.delete('/', (req, res) => {
     const visitor = deleteAllVisitor();
-    res.status(200).json({'message': 'results are ready'})
+    res.status(200).json({status: 'ok'});
 })
 
-app.put('/update:id', (req, res) => {
+app.put('/', (req, res) => {
     var visitorname = req.body.visitorname;
     var assistedby = req.body.assistedby;
     var age = req.body.age;
@@ -54,9 +59,11 @@ app.put('/update:id', (req, res) => {
 })
 
 
-const server = app.listen(5000, function () {
+const server = app.listen(5001, function () {
     const host = server.address().address
     const port = server.address().port
     
     console.log("This is where the magic happens http://%s:%s", host, port)
  })
+
+ module.exports = server, app;
