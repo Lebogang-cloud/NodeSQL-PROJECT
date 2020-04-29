@@ -14,7 +14,6 @@ const {
 const app = express();
 
 app.use(express.json());
-<<<<<<< HEAD
 app.use(express.urlencoded({extended: true}))
 
 
@@ -71,7 +70,6 @@ app.put('/updateVisitor', (req, res) => {
     res.status(200).json({'message': 'results are ready'})
 })
 
-=======
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/addNewVisitor", (req, res) => {
@@ -124,7 +122,7 @@ app.put("/updateVisitor", (req, res) => {
   const visitor_Id = req.params.visitor_Id;
   res.status(200).json({ message: "results are ready" });
 });
->>>>>>> e6210c0860b0a2ccd12f84b7c59c6bb5a9c6aa9e
+
 
 const server = app.listen(5001, function () {
   const host = server.address().address;
