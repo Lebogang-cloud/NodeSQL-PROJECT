@@ -1,0 +1,34 @@
+body
+    main.container
+        form (action="new_visitor" method="POST")
+            p
+                |Visitor
+                |Please fill in your details...
+
+        div.row
+        label(for='name') name: Visitor Name
+        input#name.row(type='text', placeholder='Enter Name' name='name')
+
+        div.row
+        label (for='assistedby') Assisted By:
+        input#assistby.row(type='text', placeholder='Enter Name' name="assistedby")
+
+        div.row
+        label(for='age') Age:
+        input#age.row(type="text", placeholder="Enter Age" name="age")
+
+        div.row
+        label(for='date') Date:
+        input#date.row(type="text" ,placeholder="Enter Date" name="date")
+
+        div.row
+        label(for='time') Time:
+        input#time.row(type="text", placeholder="Enter Time" name="time")
+
+        div.row
+        label(for='comment') Comment:
+        input#comment.row(type="text", placeholder="Enter Comment" name="comments" cols="20" rows="10")
+
+        div.row
+        button.btn.btn-primary(type="submit") Submit
+        

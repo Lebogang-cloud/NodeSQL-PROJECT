@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
 
-app.post('/new-visitor', (req, res) => {
+app.post('/addNewVisitor', (req, res) => {
     var visitorname = req.body.visitorname;
     var assistedby = req.body.assistedby;
     var age = req.body.age;
@@ -23,35 +23,38 @@ app.post('/new-visitor', (req, res) => {
     var time = req.body.time;
     var comment = req.body.comment;
 
-    const visitor = addNewVisitor(visitorname,assistedby, age, date, time, comment)
-    res.status(200).json({'message': 'visitor added'})
+    const newVisitor = require('./index', addNewVisitor);
+    res.status(200).json({"message":"It is okay!"})
 })
 
 app.get('/', (req, res) => {
     return res.status(200).send({status:'Okay'})
 })
 
-app.get('/', (req, res) => {
-    const visitor = selectVisitor();
+app.get('/selectVisitor', (req, res) => {
+    const visitor = require('./index' , selectVisitor);
+
     return res.status(200).send({status: 'ok'});
 })
 
-app.get('/view-all-visitors', (req, res) => {
-    const visitor = listAllVisitors();
-    res.status(200).json({status: 'ok'});
-})
-app.delete('/', (req, res) => {
-    const visitor = deleteVisitor();
+app.get('/listAllVisitors', (req, res) => {
+    const newVisitor = require('./index', listAllVisitors)
     res.status(200).json({status: 'ok'});
 })
 
-
-app.delete('/', (req, res) => {
-    const visitor = deleteAllVisitor();
+app.delete('/deleteVisitor', (req, res) => {
+    const visitor_Id = req.params.visitor_Id
+    const visitor = require('./index', deleteVisitor);
     res.status(200).json({status: 'ok'});
 })
 
-app.put('/', (req, res) => {
+
+app.delete('/deleteAllVisitor', (req, res) => {
+    const newVisitor = require('./index', deleteAllVisitor);
+    res.status(200).json({status: 'ok'});
+})
+
+app.put('/updateVisitor', (req, res) => {
     var visitorname = req.body.visitorname;
     var assistedby = req.body.assistedby;
     var age = req.body.age;
@@ -59,7 +62,9 @@ app.put('/', (req, res) => {
     var time = req.body.time;
     var comment = req.body.comment;
 
-    const visitorId = req.params.visitorId;
+    const newVisitor = ('./index', updateVisitor) 
+    const visitor_Id =req.params.visitor_Id;
+    
     res.status(200).json({'message': 'results are ready'})
 })
 

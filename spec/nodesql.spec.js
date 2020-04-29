@@ -2,15 +2,6 @@ const Visitors = require("../src/index");
 const config = require('config');
 const server = require('../src/server');
 
-let visitor = new Visitors(
-  1,
-  "Teboho",
-  22,
-  "03-24-2020",
-  "20:00",
-  "Romeo",
-  "He is very smart"
-);
 
 let teboho = new Visitors(1,
     "Teboho",
@@ -22,7 +13,7 @@ let teboho = new Visitors(1,
 
 describe("visitor's function have been defined", () => {
   it("should check if deleteVisitor is defined", () => {
-    expect(visitor.deleteVisitor).toBeDefined();
+    expect(teboho.deleteVisitor).toBeDefined();
   });
 
   it("should check if updateVisitor is defined", () => {
@@ -30,7 +21,7 @@ describe("visitor's function have been defined", () => {
   });
 
   it("should check if deleteAllVisitors is defined", () => {
-    expect(visitor.deleteAllVisitors).toBeDefined();
+    expect(teboho.deleteAllVisitors).toBeDefined();
   });
 
   it("should check if selectVisitor is defined", () => {
@@ -40,7 +31,7 @@ describe("visitor's function have been defined", () => {
 
 describe("check if methods/ function adds a visitor ", () => {
   it("should spy on addNewVisitor ", () => {
-    spyOn(visitor, "addNewVisitor");
+    spyOn(teboho, "addNewVisitor");
   });
 
   it("should spy on whether the a visitor's detail's are updated", () => {
@@ -48,9 +39,3 @@ describe("check if methods/ function adds a visitor ", () => {
   });
 });
 
-describe('server', () =>{
-  it('should test that server is running current port', async() => {
-    expect(server.port).toEqual(config.get('port'))
-  })
-  console.log(server.port)
-})
