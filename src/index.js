@@ -4,7 +4,7 @@ const client = new Client({
   host: "localhost",
   database: "db",
   password: "pass",
-  port: 5432
+  port: 5432,
 });
 
 class Visitors {
@@ -38,7 +38,7 @@ class Visitors {
         )
       )
       .then(() => console.log("Visitors values have been saved"))
-      .catch(e => console.log(e))
+      .catch((e) => console.log(e))
       .finally(() => client.end());
   }
 
@@ -47,7 +47,7 @@ class Visitors {
       .connect()
       .then(() => client.query(SQL))
       .then(() => console.log("Return visitor names and ids"))
-      .catch(e => console.log(e))
+      .catch((e) => console.log(e))
       .finally(() => client.end());
   }
 
@@ -58,7 +58,7 @@ class Visitors {
         client.query("DELETE FROM visitors WHERE visitor_ID=$1;", [id])
       )
       .then(() => console.log("Visitor information has been deleted"))
-      .catch(e => console.log(e))
+      .catch((e) => console.log(e))
       .finally(() => client.end());
   }
 
@@ -68,11 +68,11 @@ class Visitors {
       .then(() =>
         client.query("UPDATE visitors SET ${where}= $2 WHERE visitor_ID=$1;", [
           id,
-          value
+          value,
         ])
       )
       .then(() => console.log("Visitor information have been updated"))
-      .catch(e => console.log(e))
+      .catch((e) => console.log(e))
       .finally(() => client.end());
   }
 
@@ -83,7 +83,7 @@ class Visitors {
         client.query("SELECT * FROM visitors WHERE visitor_ID=$1;", [id])
       )
       .then(() => console.log(results.row))
-      .catch(e => console.log(e))
+      .catch((e) => console.log(e))
       .finally(() => client.end());
   }
 
@@ -92,11 +92,9 @@ class Visitors {
       .connect()
       .then(() => client.query("DELETE FROM visitors;"))
       .then(() => console.log(" Visitors haven been deleted"))
-      .catch(e => console.log(e))
+      .catch((e) => console.log(e))
       .finally(() => client.end());
   }
 }
 
 module.exports = Visitors;
-
- 
