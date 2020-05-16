@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 
+
 const {
   createTable,
   addNewVisitor,
@@ -9,68 +10,28 @@ const {
   updateVisitor,
   selectVisitor,
   deleteAllVisitor,
-} = require("./index");
+} = require("../index");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
-
-app.post('/addNewVisitor', (req, res) => {
-    var visitorname = req.body.visitorname;
-    var assistedby = req.body.assistedby;
-    var age = req.body.age;
-    var date = req.body.date;
-    var time = req.body.time;
-    var comment = req.body.comment;
-
-    const newVisitor = require('./index', addNewVisitor);
-    res.status(200).json({"message":"It is okay!"})
+   
+app.get('/html', () => {
+    res.status(200).sendfile()
 })
 
 app.get('/', (req, res) => {
-    return res.status(200).send({status:'Okay'})
+  res.status(200).json({
+    visitorname: "lebo",
+    assistedby: "Thabo",
+    age: 30,
+    date: "12/05/2020",
+    time: "15:00",
+    comment: "what a wow"
+  })
 })
-
-app.get('/selectVisitor', (req, res) => {
-    const visitor = require('./index' , selectVisitor);
-
-    return res.status(200).send({status: 'ok'});
-})
-
-app.get('/listAllVisitors', (req, res) => {
-    const newVisitor = require('./index', listAllVisitors)
-    res.status(200).json({status: 'ok'});
-})
-
-app.delete('/deleteVisitor', (req, res) => {
-    const visitor_Id = req.params.visitor_Id
-    const visitor = require('./index', deleteVisitor);
-    res.status(200).json({status: 'ok'});
-})
-
-
-app.delete('/deleteAllVisitor', (req, res) => {
-    const newVisitor = require('./index', deleteAllVisitor);
-    res.status(200).json({status: 'ok'});
-})
-
-app.put('/updateVisitor', (req, res) => {
-    var visitorname = req.body.visitorname;
-    var assistedby = req.body.assistedby;
-    var age = req.body.age;
-    var date = req.body.date;
-    var time = req.body.time;
-    var comment = req.body.comment;
-
-    const newVisitor = ('./index', updateVisitor) 
-    const visitor_Id =req.params.visitor_Id;
-    
-    res.status(200).json({'message': 'results are ready'})
-})
-
-app.use(express.urlencoded({ extended: true }));
 
 app.post("/addNewVisitor", (req, res) => {
   var visitorname = req.body.visitorname;
@@ -80,8 +41,15 @@ app.post("/addNewVisitor", (req, res) => {
   var time = req.body.time;
   var comment = req.body.comment;
 
-  const newVisitor = require("./index", addNewVisitor);
-  res.status(200).json({ status: "It is okay!" });
+  // const newVisitor = require("./index", addNewVisitor);
+  res.status(200).json({
+    visitorname: visitorname,
+    assistedby: assistedby,
+    age: age,
+    time: time,
+    date: date,
+    comment: comment
+  });
 });
 
 app.get("/", (req, res) => {
@@ -99,10 +67,17 @@ app.get("/listAllVisitors", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
-app.delete("/deleteVisitor", (req, res) => {
+app.delete("/deleteVisitor/:id", (req, res) => {
   const visitor_Id = req.params.visitor_Id;
   const visitor = require("./index", deleteVisitor);
-  res.status(200).json({ status: "ok" });
+  visitor.deleteVisitor(visitor_Id)
+  .then(()=>{
+    res.status(200).json({ status: "ok" });
+  })
+    .catch (err => {
+      res.status.json({err:err})
+  });
+  
 });
 
 app.delete("/deleteAllVisitor", (req, res) => {

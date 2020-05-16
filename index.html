@@ -6,9 +6,10 @@
     <title>VISITOR'S LOG</title>
   </head>
   <body>
-    <div id="result"></div>
+      <!-- <h1 id="visitor name"></h1> -->
+
     <div class="container">
-      <form name="myForm" onsubmit="return validateMyForm();" method="POST">
+      <form id="myForm"  method="POST">
         <h1>Visitor</h1>
         <p>Please fill in your details...</p>
 
@@ -60,7 +61,7 @@
         />
 
         <div class="row">
-          <button type="submit" class="btn">Submit</button>
+          <input type="submit" value="Submit">
         </div>
       </form>
     </div>
@@ -81,27 +82,14 @@
             <th>Comment</th>
           </tr>
           <tr id="row1">
-          <td id="id_row1">1</td>
-            <td id="name_row1">Anna</td>
-            <td id="assistedby_row1">River</td>
-            <td id="age_row1">20</td>
-            <td id="date_row1">12/04/2020</td>
-            <td id="time_row1">14:00</td>
-            <td id="comment_row1">no comment</td>
-            <td>
-            <input type="button" id="update_button1" value="Update" class="update" onclick="update_row('1')">
-            <input type="button" value="Delete" class="delete" onclick="delete_row('1')">
+        
+            <button class="btn-danger" id="delete-btn" data-id="{{this._id}}">Delete</button>
             </td>
             </tr>
         </thead>
         <tbody id="visitors"></tbody>
       </table>
     </div>
-
-
-    <script type='text/javascript' src="table.js", src="app.js">
-  
-  </script> 
-  
+    <script src="app.js"></script>
   </body>
 </html>

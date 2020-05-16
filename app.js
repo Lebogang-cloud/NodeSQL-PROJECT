@@ -1,58 +1,39 @@
-const btn = document.querySelector("button");
-const result = document.querySelector("#result");
-btn.addEventListener("click", addNewVisitor);
-const url = "http://localhost:5001/";
+// // window.addEventLister("click",function() {
+// //   function sendData() {
+// //     const XHR = new XMLHttpRequest();
+// //     const userObj = new FormData(form);
 
-const myForm = document.getElementById("myForm");
-myForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-});
+// //     XHR.addEventListener("click", function(event){
+// //       alert(event.target.responseText);
+// //     });
+//     XHR.addEventListener("error",target, function(){
+//       alert('oops! Something went wrong.');
+//     });
+//     XHR.open("POST","http:127.0.0.1:5500");
+//     XHR.send(userObj);
+//   }
+//   const form = document.getElementById("myForm");
+//   form.addEventListener("submit",function(event){
+//     event.preventDefault();
 
-function selectVisitor() {
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", url);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var str = xhr.responseText;
-      var obj = JSON.parse(str);
-      result.innerHTML = obj.value;
-    }
-  };
-  xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-  xhr.send();
-  return xhr;
-}
+//     sendData()
+//   })
 
-selectVisitor(url, function (data) {
-  var json = JSON.parse(data);
-  console.log(json);
-});
+// })
 
-function addNewVisitor() {
-  let xhr = new XMLHttpRequest();
-  xhr.open("Post", url, true);
-  xhr.onload = function () {
-    xhr.setRequestHeader("Content-Type", "application/json");
-    if (this.status == 200) {
-      let jsonData = JSON.parse(this.response);
-      console.log(jsonData);
-    }
-  };
+// let visitorObj = {
+//   visitorname: "Nandi",
+//   age: 20,
+//   gender: "anything"
+// }
 
-  let name = document.getElementById("name").value;
-  let assistedby = document.getElementById("assistedby").value;
-  let age = document.getElementById("age").value;
-  let date = document.getElementById("date").value;
-  let time = document.getElementById("time").value;
-  let comment = document.getElementById("comment").value;
+// const getVisitor = async () =>{
+//   try {
+//     let visitor = await fetch("http:127.0.0.1:5500")
+//     let obj = await visitor.json()
 
-  let data = JSON.stringify({
-    name: name,
-    assistedby: assistedby,
-    age: age,
-    date: date,
-    time: time,
-    comment: comment,
-  });
-  xhr.send(data);
-}
+//     document.getElementById("visitor name").innerHTML = obj.name
+//   }catch (err) {
+//     console.log(err);
+//   }
+// } 

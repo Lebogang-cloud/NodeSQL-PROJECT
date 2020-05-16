@@ -2,18 +2,6 @@ const Visitors = require("../src/index");
 const config = require("config");
 const server = require("../src/server");
 
-<<<<<<< HEAD
-=======
-let teboho = new Visitors(
-  1,
-  "Teboho",
-  22,
-  "03-24-2020",
-  "20:00",
-  "Romeo",
-  "He is very smart"
-);
->>>>>>> e6210c0860b0a2ccd12f84b7c59c6bb5a9c6aa9e
 
 describe("visitor's function have been defined", () => {
   it("should check if deleteVisitor is defined", () => {
@@ -42,7 +30,3 @@ describe("check if methods/ function adds a visitor ", () => {
     spyOn(teboho, "updateVisitor");
   });
 });
-<<<<<<< HEAD
-
-=======
->>>>>>> e6210c0860b0a2ccd12f84b7c59c6bb5a9c6aa9e
